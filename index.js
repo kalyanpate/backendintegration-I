@@ -1,22 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+const express = require ('express');
+const app = express();
 
+const dotenv = request ("dotenv");
+dotenv.config();
 
-// const root =ReactDOM.createReact(document.getElementById("root"));
+ const port = process.env.PORT;
 
-// root.render(<App />);
+const cors =require('cors');
+const corsOptions={
+    origin: "http://localhost:3000"
+};
+app.use(cors (corsOptions));
 
+app.get('/', (request, response)=>{
+    response.json({message: "data from backend app"});
+});
 
-ReactDOM.render(
-  <App />
-  ,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+app.listen(port, ()=>{
+    console.log('server is running on port 3000');
+});
